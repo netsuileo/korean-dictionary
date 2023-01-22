@@ -21,7 +21,7 @@ def word(request, word_id):
         request,
         "words/word.html",
         context={
-            "title": f"{settings.WEBSITE_TITLE}: {word.spelling_display}",
+            "title": f"{settings.WEBSITE_TITLE}: {word.spelling}",
             "word": word,
         },
     )

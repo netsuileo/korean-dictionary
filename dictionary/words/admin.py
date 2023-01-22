@@ -9,9 +9,7 @@ class WordAdmin(admin.ModelAdmin):
     list_display = [
         "rank",
         "spelling",
-        "origin",
-        "type",
-        "word_class",
+        "meaning",
         "naver_dictionary_url",
         "english_wikitionary_url",
         "korean_wikitionary_url",

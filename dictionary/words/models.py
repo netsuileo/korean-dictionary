@@ -1,7 +1,7 @@
 import random
 from django.db import models
 
-from utils import nullable
+from words.utils import nullable
 
 
 class WordManager(models.Manager):
@@ -50,9 +50,7 @@ class Word(models.Model):
 
     rank = models.PositiveIntegerField("Frequency rank", db_index=True, **nullable)
     spelling = models.CharField("Spelling", max_length=32)
-    origin = models.CharField("Origin", max_length=64)
-    type = models.CharField("Part of speech", max_length=3, choices=PARTS_OF_SPEECH)
-    word_class = models.CharField("Class", max_length=1, choices=WORD_CLASSES)
+    meaning = models.CharField("Meaning", max_length=256, **nullable)
 
     objects = WordManager()
 
