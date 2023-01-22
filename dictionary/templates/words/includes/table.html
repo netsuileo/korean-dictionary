@@ -1,0 +1,22 @@
+<table id="results-table">
+    <thead>
+        <th>Rank</th>
+        <th>Spelling</th>
+        <th>Meaning</th>
+        <th>Links</th>
+    </thead>
+    <tbody>
+        {% for word in words %}
+            <tr>
+                <td>{{ word.rank }}</td>
+                <td><a href="{% url 'word' word.id %}">{{ word.spelling_display }}</a></td>
+                <td>No meaning yet</td>
+                <td>
+                    <a href="{{ word.naver_dictionary_url }}" target="_blank">Naver</a> |
+                    <a href="{{ word.english_wikitionary_url }}" target="_blank">Wikitionary</a> |
+                    <a href="{{ word.korean_wikitionary_url }}" target="_blank">Korean Wikitionary</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

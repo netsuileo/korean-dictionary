@@ -1,0 +1,38 @@
+{% load static %}
+
+<!doctype html>
+<html lang="{{ metadata.language }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/pico.min.css' %}">
+
+    {% block js %}
+    {% endblock %}
+    <title>{{ title }}</title>
+</head>
+
+<body class="container">
+    <div class="container">
+        <nav>
+            <ul>
+                <li><strong>Korean Learner's Dictionary</strong></li>
+            </ul>
+            <ul>
+                {% if request.resolver_match.url_name != 'index' %}
+                    <li><a href="{% url 'index' %}">Back to words!</a></li>
+                {% endif %}
+                <li><a href="{% url 'about' %}">What is this all about?</a></li>
+            </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="container">
+        <p>Created by <a href="https://github.com/netsuileo" target="_blank">@netsuileo</a></p>
+    </div>
+</body>
+
+</html>

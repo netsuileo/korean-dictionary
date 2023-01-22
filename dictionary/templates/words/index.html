@@ -1,0 +1,12 @@
+{% extends 'words/base.html' %}
+
+{% load static %}
+
+{% block js %}
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <input id="search-input" placeholder="Search for a word">
+    {% include 'words/includes/table.html' %}
+{% endblock %}
