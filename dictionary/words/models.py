@@ -9,7 +9,6 @@ class WordManager(models.Manager):
         return random.sample(list(self.all()), amount)
 
     def search(self, word: str, limit: int):
-        # TODO: switch to postgres for more advanced full-text search
         return self.filter(spelling__contains=word).order_by("spelling")[:limit]
 
 
