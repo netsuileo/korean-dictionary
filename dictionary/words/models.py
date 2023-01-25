@@ -9,7 +9,10 @@ class WordManager(models.Manager):
         return random.sample(list(self.all()), amount)
 
     def search(self, word: str, limit: int):
-        return self.filter(spelling__contains=word).order_by("spelling")[:limit]
+        return self.filter(
+            models.Q(spelling__contains=word) |
+            models.Q(meaning__contains=word)
+        ).order_by("spelling")[:limit]
 
 
 class Word(models.Model):
