@@ -3,6 +3,8 @@
         <th>Rank</th>
         <th>Spelling</th>
         <th>Meaning</th>
+        <th>Romanization</th>
+        <th>Pronunciation</th>
         <th>Links</th>
     </thead>
     <tbody>
@@ -11,6 +13,8 @@
                 <td>{{ word.rank | default:"-"}}</td>
                 <td><a href="{% url 'word' word.id %}">{{ word.spelling }}</a></td>
                 <td>{{ word.meaning | default:"[No meaning provided]"}}</td>
+                <td>{{ word.romanization }}</td>
+                <td>{{ word.pronunciation }}</td>
                 <td>
                     <a href="{{ word.naver_dictionary_url }}" target="_blank">Naver</a> |
                     <a href="{{ word.english_wikitionary_url }}" target="_blank">Wikitionary</a> |

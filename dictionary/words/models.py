@@ -1,4 +1,5 @@
 import random
+import korean_romanizer
 from django.db import models
 
 from words.utils import nullable
@@ -10,9 +11,8 @@ class WordManager(models.Manager):
 
     def search(self, word: str, limit: int):
         return self.filter(
-            models.Q(spelling__contains=word) |
-            models.Q(meaning__contains=word)
-        ).order_by("spelling")[:limit]
+            models.Q(spelling__contains=word) | models.Q(meaning__contains=word)
+        ).order_by("rank")[:limit]
 
 
 class Word(models.Model):
@@ -62,6 +62,16 @@ class Word(models.Model):
         digits = "0123456789"
         digits_removal = str.maketrans("", "", digits)
         return self.spelling.translate(digits_removal)
+
+    @property
+    def romanization(self):
+        """Word romanization"""
+        return korean_romanizer.Romanizer(self.spelling).romanize()
+
+    @property
+    def pronunciation(self):
+        """Word pronunciation"""
+        return korean_romanizer.Pronouncer(self.spelling).pronounced
 
     @property
     def naver_dictionary_url(self):
